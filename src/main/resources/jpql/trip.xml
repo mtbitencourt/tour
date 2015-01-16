@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+		http://java.sun.com/xml/ns/persistence/orm_1_0.xsd ">
+
+	<named-query name="Trip.find">
+		<query>
+			select t
+			from Trip t
+		</query>
+	</named-query>
+
+	<named-query name="Trip.findRated">
+		<query>
+			select t
+			from Trip t
+			where t.rating > 0
+		</query>
+	</named-query>
+
+	<named-query name="Trip.findByCustomer">
+		<query>
+			select t
+			from Trip t
+			where t.customer = :customer
+			order by t.date, t.destination.name
+		</query>
+	</named-query>
+
+	<named-query name="Trip.findByDestination">
+		<query>
+			select t
+			from Trip t
+			where t.destination = :destination
+		</query>
+	</named-query>
+
+	<named-query name="Trip.erase">
+		<query>
+			delete
+			from Trip
+		</query>
+	</named-query>
+
+</entity-mappings>

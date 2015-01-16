@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+		http://java.sun.com/xml/ns/persistence/orm_1_0.xsd ">
+
+	<named-query name="Customer.find">
+		<query>
+			select c
+			from Customer c
+			order by c.name
+		</query>
+	</named-query>
+
+	<named-query name="Customer.loadByEmailAndCpf">
+		<query>
+			select c
+			from Customer c
+			where c.email = :email and c.cpf = :cpf
+		</query>
+	</named-query>
+
+	<named-query name="Customer.erase">
+		<query>
+			delete
+			from Customer
+		</query>
+	</named-query>
+
+</entity-mappings>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+<ui:define name="conteudo">
+
+	<h:form>
+		<div style="min-width: 80%; max-width: 80%; margin: 20px auto auto auto;">
+			<p:commandButton value="Sair" icon="ui-icon-radio-off" action="#{autc.logout}"
+				style="margin: auto 10px;" />
+		</div>
+
+		<p:growl id="msg" showSummary="true" showDetail="true" />
+	</h:form>
+
+	<p:dataTable var="destination" value="#{ranking.highestDestinations}"
+			style="min-width: 80%; max-width: 80%; margin: 20px auto auto auto;">
+		<f:facet name="header">
+        	Destinos com maior avaliação
+    	</f:facet>
+
+		<p:column headerText="Nome">
+			<h:outputText value="#{destination.name}" />
+		</p:column>
+		<p:column headerText="Avaliação">
+			<p:rating value="#{destination.rating}" readonly="true"
+				converter="javax.faces.Integer" style="margin: auto 20px" />
+			<h:outputText value="#{destination.rating}" style="margin: auto 20px">
+				<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+			</h:outputText>
+		</p:column>
+	</p:dataTable>
+
+	<p:dataTable var="destination" value="#{ranking.lowestDestinations}"
+			style="min-width: 80%; max-width: 80%; margin: 20px auto auto auto;">
+		<f:facet name="header">
+        	Destinos com menor avaliação
+    	</f:facet>
+
+		<p:column headerText="Nome">
+			<h:outputText value="#{destination.name}" />
+		</p:column>
+		<p:column headerText="Avaliação">
+			<p:rating value="#{destination.rating}" readonly="true"
+				converter="javax.faces.Integer" style="margin: auto 20px" />
+			<h:outputText value="#{destination.rating}" style="margin: auto 20px">
+				<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+			</h:outputText>
+		</p:column>
+	</p:dataTable>
+
+</ui:define>
+</ui:composition>

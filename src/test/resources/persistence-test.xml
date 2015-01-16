@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+		http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="tour-unit" transaction-type="JTA">
+		<!-- OpenJPA -->
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+		<!-- DataSource JNDI -->
+		<jta-data-source>dsTour</jta-data-source>
+
+		<mapping-file>jpql/customer.xml</mapping-file>
+		<mapping-file>jpql/employee.xml</mapping-file>
+		<mapping-file>jpql/destination.xml</mapping-file>
+		<mapping-file>jpql/trip.xml</mapping-file>
+
+		<class>quikkoo.mt.xptotour.model.User</class>
+		<class>quikkoo.mt.xptotour.model.Customer</class>
+		<class>quikkoo.mt.xptotour.model.Employee</class>
+		<class>quikkoo.mt.xptotour.model.Destination</class>
+		<class>quikkoo.mt.xptotour.model.Trip</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:xptotour" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="openjpa.jdbc.DBDictionary" value="hsql" />
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+
+			<property name="openejb.jpa.init-entitymanager" value="true" />
+
+			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
+		</properties>
+	</persistence-unit>
+</persistence>

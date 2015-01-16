@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+<ui:define name="conteudo">
+
+<p:tabView style="min-width: 60%; max-width: 60%; margin: 20px auto">
+	<p:tab title="Cliente">
+		<h:form>
+			<h:panelGrid columns="3" style="margin: 20px auto;">
+				<h:outputLabel for="cemail" value="E-Mail:" />
+				<p:watermark for="cemail" value="exemplo@email.org" />
+				<p:inputText id="cemail" value="#{autc.email}" required="true" label="E-Mail" />
+
+				<h:outputLabel for="cpf" value="Cpf:" />
+				<p:watermark for="cpf" value="000.000.000-00" />
+				<p:inputText id="cpf" value="#{autc.cpf}" required="true" label="Cpf" />
+
+				<f:facet name="footer">
+					<div style="margin-top: 20px;">
+						<p:commandButton value="Entrar" icon="ui-icon-play"
+								action="#{autc.loginCustomer}" update="@form" />
+					</div>
+				</f:facet>
+			</h:panelGrid>
+
+			<div style="margin-top: 20px;">
+				<p:messages showSummary="true" showDetail="true" severity="error,fatal" />
+			</div>
+			<p:growl showSummary="true" showDetail="false" severity="info,warn" />
+		</h:form>
+	</p:tab>
+
+	<p:tab title="Funcionário" >
+		<h:form>
+			<h:panelGrid columns="3" style="margin: 20px auto;">
+				<h:outputLabel for="femail" value="E-Mail:" />
+				<p:watermark for="femail" value="exemplo@email.org" />
+				<p:inputText id="femail" value="#{autc.email}" required="true" label="E-Mail" />
+
+				<h:outputLabel for="password" value="Senha:" />
+				<p:watermark for="password" value="****" />
+				<p:password id="password" value="#{autc.password}" required="true" label="Senha" />
+
+				<f:facet name="footer">
+					<div style="margin-top: 20px;">
+						<p:commandButton value="Entrar" icon="ui-icon-play"
+								action="#{autc.loginEmployee}" update="@form" />
+					</div>
+				</f:facet>
+			</h:panelGrid>
+
+			<div style="margin-top: 20px;">
+				<p:messages showSummary="true" showDetail="true" severity="error,fatal" />
+			</div>
+			<p:growl showSummary="true" showDetail="false" severity="info,warn" />
+		</h:form>
+	</p:tab>
+</p:tabView>
+
+<div style="min-width: 60%; max-width: 60%; margin: 20px auto">
+	<p:commandButton id="ajuda" value="Ajuda" />
+	<p:overlayPanel for="ajuda" dynamic="true" hideEffect="fade"
+		style="min-width: 60%; max-width: 60%;">
+		<p:dataTable var="customer" value="#{autc.customers}">
+			<p:column headerText="E-Mail">
+				<h:outputText value="#{customer.email}" />
+			</p:column>
+			<p:column headerText="Cpf">
+				<h:outputText value="#{customer.cpf}" />
+			</p:column>
+		</p:dataTable>
+	</p:overlayPanel>
+</div>
+
+</ui:define>
+</ui:composition>

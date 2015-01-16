@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+		http://java.sun.com/xml/ns/persistence/orm_1_0.xsd ">
+
+	<named-query name="Employee.find">
+		<query>
+			select e
+			from Employee e
+			order by e.name
+		</query>
+	</named-query>
+
+	<named-query name="Employee.loadByEmailAndPassword">
+		<query>
+			select e
+			from Employee e
+			where e.email = :email and e.password = :password
+		</query>
+	</named-query>
+
+	<named-query name="Employee.erase">
+		<query>
+			delete
+			from Employee
+		</query>
+	</named-query>
+
+</entity-mappings>

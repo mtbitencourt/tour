@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
+
+<ui:define name="conteudo">
+
+<h:form>
+	<div style="min-width: 80%; max-width: 80%; margin: 20px auto auto auto;">
+		<p:commandButton value="Sair" icon="ui-icon-radio-off" action="#{autc.logout}"
+			style="margin: auto 10px;" />
+	</div>
+
+	<div style="margin: 20px auto auto auto; text-align: center;">
+		Registro de viagens de: <h:outputText value="#{rating.customer.name}" />
+	</div>
+
+	<p:dataTable var="trip" value="#{rating.trips}"
+		style="min-width: 80%; max-width: 80%; margin: 20px auto auto auto;">
+
+		<p:column headerText="Data" style="min-width: 30%; max-width: 30%;">
+			<h:outputText value="#{trip.date}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
+		</p:column>
+
+		<p:column headerText="Destino" style="min-width: 40%; max-width: 40%;">
+			<h:outputText value="#{trip.destination.name}" />
+		</p:column>
+
+		<p:column headerText="Avaliação" style="min-width: 30%; max-width: 30%;">
+			<p:rating value="#{trip.rating}">
+				<p:ajax event="rate" listener="#{rating.onRate}" update="@form" />
+				<p:ajax event="cancel" listener="#{rating.onCancel(trip)}" update="@form" />
+				<f:attribute name="trip" value="#{trip}" />
+			</p:rating>
+		</p:column>
+	</p:dataTable>
+
+	<p:growl id="msg" showSummary="true" showDetail="true" />
+</h:form>
+
+</ui:define>
+</ui:composition>
