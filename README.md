@@ -43,10 +43,11 @@ Obs: The application needs to be packaged first
 
 the application runs with a in memory database and the data will be randomly generated in the startup
 
-###
+### Logon
 
 The `Ajuda` button shows the users who can do logon in the application using the form in main tab
 
 Also can logon using other form in the second tab with
+
 	email: admin@email.org
 	password: admin
